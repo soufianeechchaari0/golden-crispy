@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Golden Crispy | Menu Officiel</title>
+  <meta name="description" content="Menu officiel de Golden Crispy : boxes, burgers, wraps, tacos et sandwiches de poulet croustillant. Commandez par WhatsApp.">
+  <meta name="theme-color" content="#14100c">
+  <meta property="og:title" content="Golden Crispy | Menu Officiel">
+  <meta property="og:description" content="Poulet croustillant : boxes, burgers, wraps, tacos, sandwiches. Commandez par WhatsApp.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="images/logo.png">
+  <link rel="icon" href="images/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@1,800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="hd">
+    <div class="in hd-in">
+      <a class="brand" href="#accueil">
+        <img class="brand-logo" src="images/logo.png" alt="" width="44" height="44">
+        <span class="brand-name"><b>GOLDEN CRISPY</b><small>Menu officiel</small></span>
+      </a>
+      <nav class="links" aria-label="Navigation principale">
+        <a href="#accueil">Accueil</a>
+        <a href="#menu">Menu Carte</a>
+        <a href="#contact">Contact &amp; Localisation</a>
+      </nav>
+      <div class="hd-actions">
+        <button type="button" class="chip" id="tableChip" aria-label="Numéro de table">Table <span id="tableVal">—</span></button>
+        <button type="button" class="cta-cart" id="cartBtn" aria-label="Voir ma commande">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8h12l-1 12H7L6 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+          <span class="lbl">Commande</span> <span class="badge" id="badge">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero" id="accueil">
+    <div class="in">
+      <div class="hero-in">
+        <div class="hero-copy">
+          <p class="eyebrow">Bienvenue chez</p>
+          <h1 class="disp"><span>Golden</span><span>Crispy</span></h1>
+          <p class="ar" id="heroAr" lang="ar" dir="rtl"></p>
+          <p class="lead" id="heroTag"></p>
+          <div class="hero-cta">
+            <a class="btn amber" href="#menu">Voir le menu</a>
+            <a class="btn line" id="heroWa" href="#" target="_blank" rel="noopener">Commander sur WhatsApp</a>
+          </div>
+        </div>
+        <div class="hero-art">
+          <div class="ring"></div>
+          <img src="images/logo.png" alt="Golden Crispy" width="260" height="260">
+        </div>
+      </div>
+      <div class="stats" id="stats"></div>
+    </div>
+  </section>
+
+  <section class="menu-sec" id="menu">
+    <div class="in menu-top">
+      <div>
+        <h2 class="sec-title disp">Notre menu</h2>
+        <p>Prix en dirhams · Sur place, à emporter ou en livraison</p>
+      </div>
+      <div class="search">
+        <input id="q" type="search" placeholder="Rechercher un plat" aria-label="Rechercher un plat" autocomplete="off">
+      </div>
+    </div>
+    <nav class="catnav" aria-label="Catégories">
+      <div class="in catnav-in" id="catnavIn"></div>
+    </nav>
+    <div class="in menu-end">
+      <div id="cats"></div>
+      <p class="no-res" id="noRes" hidden>Aucun plat ne correspond à votre recherche.</p>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="in">
+      <h2 class="sec-title disp">Contact &amp; Localisation</h2>
+      <div class="contact-grid">
+        <div class="c-card">
+          <h3>Adresse</h3>
+          <p id="cAddr"></p>
+          <a class="btn amber" id="cMap" href="#" target="_blank" rel="noopener" >Ouvrir dans Google Maps</a>
+        </div>
+        <div class="c-card">
+          <h3>Commandes</h3>
+          <p id="cPhone"></p>
+          <a class="btn amber" id="cWa" href="#" target="_blank" rel="noopener">WhatsApp</a>
+        </div>
+        <div class="c-card">
+          <h3>Horaires</h3>
+          <p id="cHours"></p>
+        </div>
+        <div class="c-card">
+          <h3>Instagram</h3>
+          <p id="cIg"></p>
+          <a class="btn line" id="cIgLink" href="#" target="_blank" rel="noopener">Suivre</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="in ft-in">
+      <div class="ft-brand">
+        <img src="images/logo.png" alt="" width="36" height="36">
+        <b>GOLDEN CRISPY</b>
+      </div>
+      <div><a class="admin-link" href="admin.html" aria-label="Administration" title="Administration">@</a> © <span id="year"></span> Golden Crispy · Tous droits réservés</div>
+    </div>
+  </footer>
+
+  <section class="dev-sec" id="devBox">
+    <div class="in">
+      <a class="dev-card" id="devLink">
+        <img class="dev-logo" src="images/sch-logo-full.jpg" alt="SCH Solutions" width="130" height="91">
+        <div class="dev-copy">
+          <small>Site conçu et développé par</small>
+          <b id="devName"></b>
+          <em>Smart Digital Services</em>
+          <span class="dev-cta" id="devCta">Créez votre menu digital →</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <div class="cartbar" id="cartbar">
+    <button type="button" id="cartbarBtn">
+      <span>Voir ma commande (<span id="barCount">0</span>)</span>
+      <span id="barTotal">0 DH</span>
+    </button>
+  </div>
+
+  <div class="overlay" id="overlay">
+    <aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="dTitle">
+      <div class="d-hd">
+        <h2 class="disp" id="dTitle">Votre commande</h2>
+        <button type="button" class="x" id="closeX" aria-label="Fermer">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+      </div>
+      <div class="d-body">
+        <div class="lines" id="lines"></div>
+        <div class="seg" role="radiogroup" aria-label="Mode de commande">
+          <button type="button" role="radio" data-mode="table" aria-checked="false">À table</button>
+          <button type="button" role="radio" data-mode="emporter" aria-checked="false">Emporter</button>
+          <button type="button" role="radio" data-mode="livraison" aria-checked="false">Livraison</button>
+        </div>
+        <div class="fields">
+          <div class="fld" id="fTable"><input id="table" type="text" inputmode="numeric" maxlength="6" placeholder="Numéro de table" autocomplete="off" aria-label="Numéro de table"></div>
+          <div class="fld" id="fName" hidden><input id="name" type="text" placeholder="Nom complet" autocomplete="name" aria-label="Nom complet"></div>
+          <div class="fld" id="fPhone" hidden><input id="phone" type="tel" placeholder="Téléphone" autocomplete="tel" aria-label="Téléphone"></div>
+          <div class="fld" id="fAddr" hidden><input id="addr" type="text" placeholder="Adresse de livraison" autocomplete="street-address" aria-label="Adresse de livraison"></div>
+          <div class="fld"><textarea id="note" rows="2" placeholder="Note (optionnel)" aria-label="Note"></textarea></div>
+        </div>
+        <p class="err" id="err" role="alert"></p>
+      </div>
+      <div class="d-ft">
+        <div class="total"><span>Total</span><b id="sheetTotal">0 DH</b></div>
+        <a class="send" id="sendBtn" href="#" target="_blank" rel="noopener">Commander sur WhatsApp</a>
+      </div>
+    </aside>
+  </div>
+
+  <script src="menu-data.js"></script>
+  <script src="app.js"></script>
+  <script>
+  (function () {
+    var KEYS = ["whatsapp","phoneDisplay","address","hours","mapUrl","instagram"], ran = false;
+    function go() { if (!ran) { ran = true; window.gcStart(); } }
+    try {
+      var ac = new AbortController(), tm = setTimeout(function () { ac.abort(); }, 2500);
+      fetch("/api/menu", { cache: "no-store", signal: ac.signal })
+        .then(function (r) { return r.ok && /json/.test(r.headers.get("content-type") || "") ? r.json() : null; })
+        .then(function (d) {
+          if (d && d.menu && d.menu.length) {
+            MENU.splice.apply(MENU, [0, MENU.length].concat(d.menu));
+            KEYS.forEach(function (k) { if (d.cfg && d.cfg[k] !== undefined) CONFIG[k] = d.cfg[k]; });
+          }
+        })
+        .catch(function () {})
+        .then(function () { clearTimeout(tm); go(); });
+    } catch (e) { go(); }
+  })();
+  </script>
+</body>
+</html>

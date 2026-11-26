@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>Golden Crispy Admin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@1,800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --orange: #f26a1b;
+  --orange-dark: #d9560b;
+  --yellow: #ffc21a;
+  --dark: #17100a;
+  --cream: #fff7ea;
+  --white: #ffffff;
+  --line: #e1d3b9;
+  --paper: #fbf6ea;
+  --bad: #c0220f;
+  --ok: #1f7a43;
+  color-scheme: light;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: "DM Sans", system-ui, sans-serif;
+  background: var(--cream); color: var(--dark);
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 20px 60px;
+}
+.wrap { max-width: 860px; margin: 0 auto; display: flex; flex-direction: column; gap: 16px; }
+h1, h2 { font-family: "Barlow Condensed", "Arial Narrow", Impact, sans-serif; font-weight: 400; letter-spacing: .5px; }
+.top {
+  background: var(--dark); color: var(--white); border-radius: 16px; padding: 16px 18px;
+  display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap;
+}
+.top h1 { font-size: 26px; color: var(--yellow); }
+.top a { color: var(--yellow); font-size: 14px; font-weight: 600; }
+.note { background: #fff0c9; border: 2px solid var(--yellow); border-radius: 14px; padding: 12px 14px; font-size: 14px; line-height: 1.55; }
+.card { background: var(--white); border: 2px solid var(--line); border-radius: 16px; padding: 16px; display: flex; flex-direction: column; gap: 12px; }
+.card h2 { font-size: 22px; }
+.grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; }
+label.f { display: flex; flex-direction: column; gap: 4px; font-size: 12px; font-weight: 600; min-width: 0; }
+input[type=text], input[type=number] {
+  width: 100%; min-width: 0; padding: 10px 12px; border-radius: 10px;
+  border: 2px solid var(--line); font: inherit; font-size: 14px; background: var(--white); color: var(--dark);
+}
+input[type=text]:focus, input[type=number]:focus { outline: none; border-color: var(--orange); }
+input[type=checkbox] { width: 18px; height: 18px; accent-color: var(--orange); }
+.cathead { display: flex; align-items: center; gap: 10px; }
+.cathead .ic { font-size: 26px; }
+.cathead input { font-family: "Barlow Condensed", "Arial Narrow", Impact, sans-serif; font-size: 20px; letter-spacing: .5px; }
+.rows { display: flex; flex-direction: column; gap: 8px; }
+.row { display: grid; grid-template-columns: minmax(0, 1fr) 96px auto auto; gap: 8px; align-items: center; }
+.tg { display: flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; white-space: nowrap; }
+@media (max-width: 520px) {
+  .row { grid-template-columns: minmax(0, 1fr) 84px; }
+  .row .tg, .row .del { justify-self: start; }
+}
+.btn { padding: 10px 16px; border-radius: 999px; font: inherit; font-weight: 700; font-size: 14px; border: 2px solid transparent; cursor: pointer; }
+.btn:focus-visible, input:focus-visible { outline: 3px solid var(--orange); outline-offset: 2px; }
+.btn.primary { background: var(--dark); color: var(--yellow); }
+.btn.add { background: var(--orange); color: var(--white); align-self: flex-start; }
+.btn.ghost { background: transparent; color: var(--dark); border-color: var(--dark); }
+.btn.del { background: transparent; color: var(--bad); border-color: var(--line); padding: 8px 12px; font-size: 13px; }
+.btn.warn { background: var(--bad); color: var(--white); }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+textarea {
+  width: 100%; min-width: 0; resize: vertical; padding: 10px; border-radius: 10px; border: 2px solid var(--line);
+  background: var(--paper); color: var(--dark); font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; line-height: 1.5;
+}
+.msg { font-size: 14px; font-weight: 600; color: var(--ok); min-height: 20px; }
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+/* polices admin */
+h1, h2 { font-weight: 800; font-style: italic; text-transform: uppercase; }
+.cathead input { font-weight: 800; font-style: italic; text-transform: uppercase; font-size: 24px; }
+
+.th{position:relative;display:inline-block;flex:none}
+.pic{width:var(--s,48px);height:var(--s,48px);border-radius:12px;border:2px dashed var(--line);background:var(--paper);display:grid;place-items:center;overflow:hidden;padding:0;cursor:pointer;font-size:20px}
+.pic img{width:100%;height:100%;object-fit:cover}
+.rm{position:absolute;top:-6px;right:-6px;width:20px;height:20px;border-radius:50%;background:var(--bad);color:#fff;border:0;font-size:13px;line-height:1;cursor:pointer}
+.row{grid-template-columns:auto minmax(0,1fr) 90px auto auto!important}
+@media(max-width:560px){.row{grid-template-columns:auto minmax(0,1fr) 80px!important}.row .tg,.row .del{grid-column:2/-1;justify-self:start}}
+.ctl{display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end}
+.ctl label.f{flex:1 1 220px}
+.qrgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+.qrc{border:2px dashed var(--dark);border-radius:16px;padding:14px;text-align:center;background:#fff;display:flex;flex-direction:column;align-items:center;gap:8px;break-inside:avoid;font-size:13px}
+.qrc .bn,.qrc .lb{display:flex;align-items:center;gap:8px;font-family:"Barlow Condensed","Arial Narrow",Impact,sans-serif;font-weight:800;font-style:italic;text-transform:uppercase}
+.qrc .bn{font-size:20px}.qrc .bn img{width:30px;height:30px;border-radius:50%}
+.qrc .lb{font-size:34px;line-height:1}
+.qrc .q{width:100%;max-width:170px}.qrc .q svg{width:100%;height:auto;display:block}
+.qrc small{font-size:9px;color:#7b6a58;word-break:break-all}
+#out{margin-top:8px}
+@media print{.noprint{display:none!important}body{background:#fff;padding:0}.qrgrid{grid-template-columns:repeat(3,1fr)}#qrcard{border:0;padding:0}}
+body{padding-bottom:100px}
+.savebar{position:fixed;left:0;right:0;bottom:0;z-index:50;display:flex;gap:12px;align-items:center;justify-content:center;flex-wrap:wrap;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));background:rgba(23,16,10,.96);color:#fff}
+.savebar .btn.primary{background:var(--yellow);color:var(--dark)}
+.dirty{font-size:13px;font-weight:600}
+.devf{display:flex;align-items:center;justify-content:center;gap:8px;font-size:13px;color:#7b6a58}
+.devf img{height:28px;width:28px;border-radius:6px;object-fit:cover;background:#000}
+.qsel{display:flex;gap:6px;align-items:center;font-weight:700;font-size:13px}
+@media print{@page{margin:0}body{padding:10mm}.qrc:not(.sel){display:none!important}.qrc small,.qrc .qsel{display:none!important}}
+html{-webkit-text-size-adjust:100%}
+@media(max-width:900px){input[type=text],input[type=number],input[type=password]{font-size:16px!important}}
+#cats{width:100%}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top noprint"><h1>Golden Crispy · Admin</h1><a href="index.html" id="back">← Retour au menu</a></header>
+  <div class="note noprint"><b>Comment ça marche :</b> modifiez les infos, catégories, articles et photos ici, puis « Télécharger menu-data.js », remplacez le fichier dans votre projet et redéployez sur Vercel. Vos changements restent dans ce navigateur jusqu'à l'export.</div>
+  <section class="card noprint"><h2>Infos &amp; contact</h2><div class="grid2" id="infos"></div></section>
+  <div class="wrap noprint" id="cats" style="gap:16px"></div>
+  <div class="actions noprint"><button type="button" class="btn add" data-act="addcat">+ Ajouter une catégorie</button></div>
+  <section class="card noprint"><h2>Exporter le menu</h2>
+    <div class="actions"><button type="button" class="btn primary" data-act="dl">Télécharger menu-data.js</button><button type="button" class="btn ghost" data-act="copy">Copier le code</button><button type="button" class="btn del" data-act="reset">Annuler mes modifications</button></div>
+    <p class="msg" id="msg" role="status"></p><textarea id="out" rows="10" hidden readonly aria-label="Contenu de menu-data.js"></textarea>
+  </section>
+  <section class="card" id="qrcard"><h2 class="noprint">Codes QR (tables, emporter, livraison)</h2>
+    <div class="ctl noprint">
+      <label class="f">Adresse de votre site<input type="text" id="site" data-f="site" placeholder="https://golden-crispy.vercel.app/" inputmode="url" autocomplete="off"></label>
+      <label class="f" style="flex:0 0 120px">Nb. de tables<input type="number" id="ntab" data-f="ntab" min="0" max="100" value="10"></label>
+      <button type="button" class="btn primary" data-act="genqr">Générer les QR</button><button type="button" class="btn ghost" data-act="selall">Tout sélectionner</button><button type="button" class="btn ghost" data-act="selnone">Aucun</button><button type="button" class="btn add" data-act="print">Imprimer la sélection</button>
+    </div>
+    <p class="msg noprint" id="qmsg" role="status"></p>
+    <div class="qrgrid" id="qrgrid"></div>
+  </section>
+  <footer class="devf noprint">Développé par <img src="images/sch-logo.jpg" alt=""><b>SCH Solutions</b></footer>
+</div>
+<div class="savebar noprint"><span id="dirty" class="dirty"></span><input type="password" id="pw" placeholder="Mot de passe admin" hidden autocomplete="current-password" aria-label="Mot de passe admin" style="width:190px"><button type="button" class="btn primary" data-act="publish">💾 Sauvegarder les modifications</button></div>
+<input type="file" id="file" accept="image/*" hidden>
+<script src="menu-data.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.js"></script>
+<script>
+(function(){
+"use strict";
+var API=false,KEYS=["whatsapp","phoneDisplay","address","hours","mapUrl","instagram"],KEY="gc_admin_draft2",SITE="gc_site",S,tgt=null;
+function $(s){return document.querySelector(s);}
+function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];});}
+function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,5);}
+function fresh(){return{cfg:JSON.parse(JSON.stringify(CONFIG)),menu:JSON.parse(JSON.stringify(MENU))};}
+try{S=JSON.parse(localStorage.getItem(KEY));}catch(e){S=null;}
+if(!S||!S.menu||!S.cfg)S=fresh();
+function setDirty(on){$("#dirty").style.color="";$("#dirty").textContent=on?"● Modifications non sauvegardées":"✔ Sauvegardé";}
+function save(){S.dirty=true;setDirty(1);try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){say("Brouillon trop lourd pour le navigateur : exportez maintenant.",1);}}
+function say(t,bad){var m=$("#msg");m.textContent=t;m.style.color=bad?"var(--bad)":"var(--ok)";var d=$("#dirty");d.textContent=t;d.style.color=bad?"#ff8a7a":"#8be0a8";}
+function pick(c){var o={};KEYS.forEach(function(k){o[k]=c[k];});return o;}
+var INFOS=[["whatsapp","WhatsApp (2126XXXXXXXX)"],["phoneDisplay","Téléphone affiché"],["address","Adresse"],["hours","Horaires"],["mapUrl","Lien Google Maps (optionnel)"],["instagram","Instagram (sans @)"]];
+function thumb(img,ci,ii,s){return '<span class="th" style="--s:'+s+'px"><button type="button" class="pic" data-act="pic" data-ci="'+ci+'" data-ii="'+ii+'" aria-label="Changer la photo">'+(img?'<img src="'+esc(img)+'" alt="">':"📷")+'</button>'+(img?'<button type="button" class="rm" data-act="rmpic" data-ci="'+ci+'" data-ii="'+ii+'" aria-label="Retirer la photo">×</button>':"")+'</span>';}
+function render(){
+  $("#infos").innerHTML=INFOS.map(function(f){return '<label class="f">'+f[1]+'<input type="text" data-f="cfg" data-k="'+f[0]+'" value="'+esc(S.cfg[f[0]])+'"></label>';}).join("");
+  $("#cats").innerHTML=S.menu.map(function(c,ci){
+    return '<section class="card"><div class="cathead">'+thumb(c.img,ci,-1,64)+
+      '<input type="text" data-f="cicon" data-ci="'+ci+'" value="'+esc(c.icon||"")+'" maxlength="4" style="width:64px" aria-label="Icône">'+
+      '<input type="text" data-f="cname" data-ci="'+ci+'" value="'+esc(c.name)+'" aria-label="Nom de la catégorie">'+
+      '<button type="button" class="btn del" data-act="delcat" data-ci="'+ci+'">Supprimer</button></div><div class="rows">'+
+      c.items.map(function(it,ii){return '<div class="row">'+thumb(it.img,ci,ii,48)+
+        '<input type="text" data-f="iname" data-ci="'+ci+'" data-ii="'+ii+'" value="'+esc(it.name)+'" aria-label="Nom">'+
+        '<input type="number" min="0" step="0.5" data-f="iprice" data-ci="'+ci+'" data-ii="'+ii+'" value="'+esc(it.price)+'" aria-label="Prix">'+
+        '<label class="tg"><input type="checkbox" data-f="isold" data-ci="'+ci+'" data-ii="'+ii+'"'+(it.soldOut?" checked":"")+'> Épuisé</label>'+
+        '<button type="button" class="btn del" data-act="delitem" data-ci="'+ci+'" data-ii="'+ii+'">Supprimer</button></div>';}).join("")+
+      '</div><button type="button" class="btn add" data-act="additem" data-ci="'+ci+'">+ Ajouter un article</button></section>';
+  }).join("");
+}
+function shrink(file,cb){var r=new FileReader();r.onload=function(){var im=new Image();im.onload=function(){var s=Math.min(1,700/Math.max(im.width,im.height)),c=document.createElement("canvas");c.width=Math.round(im.width*s);c.height=Math.round(im.height*s);var x=c.getContext("2d");x.fillStyle="#fff";x.fillRect(0,0,c.width,c.height);x.drawImage(im,0,0,c.width,c.height);cb(c.toDataURL("image/jpeg",.8));};im.onerror=function(){say("Image illisible.",1);};im.src=r.result;};r.readAsDataURL(file);}
+$("#file").addEventListener("change",function(){var f=this.files[0];if(!f||!tgt)return;shrink(f,function(d){var o=tgt.ii<0?S.menu[tgt.ci]:S.menu[tgt.ci].items[tgt.ii];o.img=d;render();save();say("Photo ajoutée. N'oubliez pas d'exporter.");});});
+document.addEventListener("input",function(e){var t=e.target,f=t.dataset.f,ci=+t.dataset.ci,ii=+t.dataset.ii;if(!f)return;
+  if(f==="site"){try{localStorage.setItem(SITE,t.value.trim());}catch(x){}return;}if(f==="ntab")return;if(f==="qsel"){t.closest(".qrc").classList.toggle("sel",t.checked);return;}
+  if(f==="cfg")S.cfg[t.dataset.k]=t.value;
+  else if(f==="cname")S.menu[ci].name=t.value;
+  else if(f==="cicon")S.menu[ci].icon=t.value;
+  else if(f==="iname")S.menu[ci].items[ii].name=t.value;
+  else if(f==="iprice")S.menu[ci].items[ii].price=Number(t.value)||0;
+  else if(f==="isold")S.menu[ci].items[ii].soldOut=t.checked;
+  save();});
+function gen(){var rp=function(k,v){return((k==="soldOut"&&!v)||(k==="img"&&!v))?undefined:v;};
+  return "// Généré par admin.html — remplacez menu-data.js par ce fichier puis redéployez.\n\nconst CONFIG = "+JSON.stringify(S.cfg,rp,2)+";\n\nconst MENU = "+JSON.stringify(S.menu,rp,1)+";\n";}
+function showCode(t){var x=$("#out");x.hidden=false;x.value=t;x.focus();x.select();try{x.scrollIntoView({behavior:"smooth",block:"center"});}catch(e){}say("Code affiché ci-dessous : Ctrl+C, puis collez-le dans menu-data.js.");}
+function arm(b,label){if(b.dataset.arm==="1")return true;b.dataset.arm="1";var o=b.textContent;b.textContent=label||"Confirmer ?";setTimeout(function(){b.dataset.arm="";b.textContent=o;},3000);return false;}
+document.addEventListener("click",function(e){var b=e.target.closest("[data-act]");if(!b)return;var a=b.dataset.act,ci=+b.dataset.ci,ii=b.dataset.ii===undefined?-1:+b.dataset.ii;
+  if(a==="dl"){var t=gen();try{var u=URL.createObjectURL(new Blob([t],{type:"text/javascript"})),l=document.createElement("a");l.href=u;l.download="menu-data.js";document.body.appendChild(l);l.click();l.remove();say("Fichier téléchargé. Remplacez menu-data.js puis redéployez. Sinon, utilisez « Copier le code ».");setDirty(0);}catch(x){showCode(t);}return;}
+  if(a==="publish"){
+    if(!API){document.querySelector('[data-act="dl"]').click();return;}
+    var pw=$("#pw").value;if(!pw){say("Entrez le mot de passe admin.",1);$("#pw").focus();return;}
+    b.disabled=true;say("Publication en cours…");
+    fetch("/api/menu",{method:"PUT",headers:{"Content-Type":"application/json","x-admin-password":pw},body:JSON.stringify({cfg:pick(S.cfg),menu:S.menu})})
+      .then(function(r){return r.json().catch(function(){return{};}).then(function(j){return{ok:r.ok,s:r.status,j:j};});})
+      .then(function(x){b.disabled=false;if(x.ok){S.dirty=false;try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}say("✔ Publié : le menu en ligne est à jour.");}else say(x.s===401?"Mot de passe incorrect.":(x.j.error||"Erreur "+x.s),1);})
+      .catch(function(){b.disabled=false;say("Connexion impossible.",1);});
+    return;}
+  if(a==="copy"){var c=gen();if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(c).then(function(){say("Code copié : collez-le dans menu-data.js.");setDirty(0);},function(){showCode(c);});}else showCode(c);return;}
+  if(a==="genqr"){drawQR();$("#qmsg").textContent="";return;}
+  if(a==="selall"||a==="selnone"){document.querySelectorAll(".qrc").forEach(function(c){var on=a==="selall";c.classList.toggle("sel",on);c.querySelector("input").checked=on;});return;}
+  if(a==="print"){if(!document.querySelector(".qrc.sel")){var qm=$("#qmsg");qm.textContent="Cochez « Imprimer » sur au moins un code QR.";qm.style.color="var(--bad)";return;}try{window.print();}catch(x){say("Impression indisponible ici : ouvrez cette page dans votre navigateur.",1);}return;}
+  if(a==="pic"){tgt={ci:ci,ii:ii};$("#file").value="";$("#file").click();return;}
+  if(a==="reset"){if(!arm(b,"Sûr ? Cliquez encore"))return;try{localStorage.removeItem(KEY);}catch(x){}S=fresh();say("Modifications annulées.");}
+  else if(a==="addcat")S.menu.push({id:"cat-"+uid(),name:"Nouvelle catégorie",icon:"🍽️",items:[]});
+  else if(a==="delcat"){if(!arm(b))return;S.menu.splice(ci,1);}
+  else if(a==="additem")S.menu[ci].items.push({id:"item-"+uid(),name:"Nouvel article",price:0});
+  else if(a==="delitem"){if(!arm(b))return;S.menu[ci].items.splice(ii,1);}
+  else if(a==="rmpic")(ii<0?S.menu[ci]:S.menu[ci].items[ii]).img="";
+  render();save();});
+function drawQR(){var host=$("#qrgrid"),base=($("#site").value||"").trim(),bad=function(m){host.innerHTML='<p class="msg" style="color:var(--bad)">'+m+'</p>';};
+  try{localStorage.setItem(SITE,base);}catch(e){}
+  if(!base)return bad("Entrez l'adresse de votre site (ex : https://golden-crispy.vercel.app/).");
+  if(typeof qrcode!=="function")return bad("Générateur de QR indisponible (connexion internet requise).");
+  if(!/^https?:\/\//i.test(base))base="https://"+base;
+  var sep=base.indexOf("?")>-1?"&":"?",n=Math.max(0,Math.min(100,parseInt($("#ntab").value,10)||0)),list=[["À emporter","mode=emporter"],["Livraison","mode=livraison"]];
+  for(var i=1;i<=n;i++)list.push(["Table "+i,"table="+i]);
+  host.innerHTML=list.map(function(x){var url=base+sep+x[1],q=qrcode(0,"M");q.addData(url);q.make();
+    return '<div class="qrc"><label class="qsel noprint"><input type="checkbox" data-f="qsel"> Imprimer</label><div class="bn"><img src="images/logo.png" alt="">Golden Crispy</div><div class="q">'+q.createSvgTag(4,0)+'</div><div class="lb">'+esc(x[0])+'</div><div>Scannez pour commander</div><small>'+esc(url)+'</small></div>';}).join("");}
+fetch("/api/menu",{cache:"no-store"}).then(function(r){if(!/json/.test(r.headers.get("content-type")||""))return null;API=true;return r.ok?r.json():null;}).then(function(d){
+  $("#pw").hidden=!API;
+  if(d&&d.menu&&d.menu.length&&!S.dirty){S.menu=d.menu;KEYS.forEach(function(k){if(d.cfg&&d.cfg[k]!==undefined)S.cfg[k]=d.cfg[k];});render();}
+  if(API&&!S.dirty)$("#dirty").textContent="🌐 Publication en ligne activée";
+}).catch(function(){});
+if(S.dirty)setDirty(1);
+var def="";try{def=localStorage.getItem(SITE)||"";}catch(e){}
+if(!def&&/^https?:/.test(location.protocol))def=location.href.split("#")[0].split("?")[0].replace(/admin\.html$/,"");
+$("#site").value=def;
+render();$("#qrgrid").innerHTML='<p class="msg" style="color:#7b6a58">Choisissez le nombre de tables puis cliquez sur « Générer les QR ».</p>';
+})();
+</script>
+</body>
+</html>
